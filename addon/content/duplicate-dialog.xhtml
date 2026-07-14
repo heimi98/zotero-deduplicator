@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Duplicate PDF Found</title>
+    <link rel="stylesheet" href="duplicate-dialog.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="icon" aria-hidden="true">≡</div>
+        <div>
+          <h1>Duplicate PDF Found</h1>
+          <p id="dialog-intro"></p>
+        </div>
+      </header>
+
+      <section class="comparison" aria-label="Duplicate file comparison">
+        <article class="card new-card">
+          <span id="new-badge" class="badge"></span>
+          <h2 id="new-document-title"></h2>
+          <dl>
+            <div><dt>File</dt><dd id="new-attachment-title"></dd></div>
+            <div><dt>Library</dt><dd id="new-library"></dd></div>
+            <div><dt>Added</dt><dd id="new-date"></dd></div>
+          </dl>
+        </article>
+
+        <article class="card">
+          <span id="existing-badge" class="badge existing"></span>
+          <h2 id="existing-document-title"></h2>
+          <dl>
+            <div><dt>File</dt><dd id="existing-attachment-title"></dd></div>
+            <div><dt>Library</dt><dd id="existing-library"></dd></div>
+            <div><dt>Added</dt><dd id="existing-date"></dd></div>
+          </dl>
+        </article>
+      </section>
+
+      <section class="fingerprint" aria-label="File fingerprint">
+        <span>SHA-256</span>
+        <code id="hash"></code>
+        <span id="size"></span>
+      </section>
+
+      <fieldset id="delete-scope-group">
+        <legend>Remove after confirmation</legend>
+        <label>
+          <input type="radio" name="delete-scope" value="attachment" checked="checked" />
+          <span><strong id="attachment-scope-title"></strong><small id="attachment-scope-detail"></small></span>
+        </label>
+        <label id="parent-option">
+          <input type="radio" name="delete-scope" value="parent" />
+          <span><strong>Remove the entire parent item</strong><small>Also remove its other attachments, notes, and annotations</small></span>
+        </label>
+      </fieldset>
+
+      <p class="trash-note">Removed items are moved to the Zotero trash and can be restored later.</p>
+    </main>
+
+    <footer>
+      <button id="keep-button" type="button">Keep Both</button>
+      <button id="delete-button" type="button" class="danger">Move to Trash</button>
+    </footer>
+
+    <script src="duplicate-dialog.js"></script>
+  </body>
+</html>

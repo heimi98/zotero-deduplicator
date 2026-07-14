@@ -1,0 +1,4 @@
+dist/
+backups/
+tmp/
+.DS_Store

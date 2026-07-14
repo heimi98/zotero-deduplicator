@@ -1,0 +1,203 @@
+:root {
+  color-scheme: light dark;
+  font: message-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: CanvasText;
+  background: Canvas;
+}
+
+main {
+  padding: 24px 26px 14px;
+}
+
+header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #c43d3d;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  transform: rotate(90deg);
+}
+
+h1 {
+  margin: 0 0 5px;
+  font-size: 22px;
+}
+
+header p,
+.trash-note {
+  margin: 0;
+  color: color-mix(in srgb, CanvasText 68%, transparent);
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.card {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid color-mix(in srgb, CanvasText 16%, transparent);
+  border-radius: 9px;
+  background: color-mix(in srgb, Canvas 94%, CanvasText 6%);
+}
+
+.new-card {
+  border-color: color-mix(in srgb, #c43d3d 48%, transparent);
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 9px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  color: #fff;
+  background: #c43d3d;
+  font-size: 11px;
+}
+
+.badge.existing {
+  background: #4b6b88;
+}
+
+h2 {
+  min-height: 42px;
+  margin: 0 0 11px;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+}
+
+dl {
+  margin: 0;
+  font-size: 12px;
+}
+
+dl div {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 7px;
+  margin-top: 5px;
+}
+
+dt {
+  color: color-mix(in srgb, CanvasText 60%, transparent);
+}
+
+dd {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fingerprint {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+  margin: 12px 0;
+  padding: 9px 11px;
+  border-radius: 7px;
+  background: color-mix(in srgb, Canvas 90%, CanvasText 10%);
+  font-size: 11px;
+}
+
+.fingerprint code {
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+fieldset {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 10px 12px 8px;
+  border: 1px solid color-mix(in srgb, CanvasText 16%, transparent);
+  border-radius: 8px;
+}
+
+legend {
+  padding: 0 5px;
+  font-weight: 600;
+}
+
+fieldset label {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+fieldset label:hover {
+  background: color-mix(in srgb, Canvas 91%, CanvasText 9%);
+}
+
+fieldset input {
+  margin-top: 3px;
+}
+
+fieldset strong,
+fieldset small {
+  display: block;
+}
+
+fieldset small {
+  margin-top: 2px;
+  color: color-mix(in srgb, CanvasText 64%, transparent);
+}
+
+.trash-note {
+  margin-top: 10px;
+  font-size: 11px;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  padding: 14px 26px;
+  border-top: 1px solid color-mix(in srgb, CanvasText 14%, transparent);
+  background: color-mix(in srgb, Canvas 96%, CanvasText 4%);
+}
+
+button {
+  min-width: 96px;
+  padding: 7px 14px;
+}
+
+button.danger {
+  border-color: #a92f2f;
+  color: #fff;
+  background: #c43d3d;
+}
+
+[hidden] {
+  display: none !important;
+}

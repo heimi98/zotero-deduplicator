@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "PDF Deduplicator",
+  "version": "1.2.0",
+  "description": "Detect duplicate Zotero PDF attachments by SHA-256 and remove them after confirmation.",
+  "author": "xuan",
+  "icons": {
+    "48": "content/icons/icon.svg",
+    "96": "content/icons/icon.svg"
+  },
+  "applications": {
+    "zotero": {
+      "id": "zotero-pdf-deduplicator@xuan.dev",
+      "update_url": "https://raw.githubusercontent.com/heimi98/zotero-deduplicator/main/update.json",
+      "strict_min_version": "9.0",
+      "strict_max_version": "9.*"
+    }
+  }
+}
