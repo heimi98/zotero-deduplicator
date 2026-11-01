@@ -3,13 +3,13 @@
     "zotero-pdf-deduplicator@xuan.dev": {
       "updates": [
         {
-          "version": "1.2.0",
-          "update_link": "https://github.com/heimi98/zotero-deduplicator/releases/download/v1.2.0/zotero-pdf-deduplicator.xpi",
-          "update_hash": "sha256:63fb078cb497f38a0d79e06f96f9b4d4ba7676dd4d749e3628b24a339d9b989d",
+          "version": "1.2.1",
+          "update_link": "https://github.com/heimi98/zotero-deduplicator/releases/download/v1.2.1/zotero-pdf-deduplicator.xpi",
+          "update_hash": "sha256:5e98a9fb58923a90c82f062889f37bec05ac0042ed962e5b2ef678e85f225d52",
           "applications": {
             "zotero": {
               "strict_min_version": "9.0",
-              "strict_max_version": "9.*"
+              "strict_max_version": "10.0.*"
             }
           }
         }

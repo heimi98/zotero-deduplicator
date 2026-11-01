@@ -1,6 +1,6 @@
 {
   "name": "zotero-pdf-deduplicator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "Detect duplicate Zotero PDF attachments by SHA-256.",
   "scripts": {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1 - 2026-11-01
+
+- Added Zotero 10.0.x compatibility, including Zotero 10.0.7, while retaining Zotero 9.x support.
+- Updated the plugin and automatic-update compatibility limits to fix the incompatible-plugin warning after upgrading Zotero.
+- Updated installation and upgrade instructions.
+
 ## 1.2.0 - 2026-07-14
 
 - Added on-demand scanning for existing PDF attachments.

@@ -1,6 +1,6 @@
-# PDF Deduplicator for Zotero 9
+# PDF Deduplicator for Zotero 9 and 10
 
-PDF Deduplicator detects byte-identical PDF attachments in Zotero 9. It uses the full-file SHA-256 hash as the final duplicate criterion and always asks for confirmation before moving anything to the Zotero trash.
+PDF Deduplicator detects byte-identical PDF attachments in Zotero 9.x and 10.0.x, including Zotero 10.0.7. It uses the full-file SHA-256 hash as the final duplicate criterion and always asks for confirmation before moving anything to the Zotero trash.
 
 ## Features
 
@@ -23,10 +23,12 @@ Zotero's stored MD5 value is used only as a fast candidate index. Every candidat
 ## Installation
 
 1. Download `zotero-pdf-deduplicator.xpi` from the [latest release](https://github.com/heimi98/zotero-deduplicator/releases/latest).
-2. Open Zotero 9.
+2. Open Zotero 9 or 10.0.
 3. Open **Tools -> Plugins**.
 4. Use the gear menu and choose **Install Plugin From File...**.
 5. Select the downloaded XPI file and restart Zotero if prompted.
+
+If Zotero disabled version 1.2.0 after upgrading to Zotero 10, check for plugin updates from the gear menu or install the latest XPI over the existing plugin.
 
 ## Usage
 
@@ -56,7 +58,7 @@ The packaged extension is written to `dist/zotero-pdf-deduplicator.xpi`.
 - Linked files with broken paths and files that are not available locally are skipped.
 - A single file read is abandoned after 30 seconds so an abnormal file cannot block the entire scan.
 - A library or item must be editable before the plugin can move it to the trash.
-- The plugin targets Zotero 9.x.
+- The plugin targets Zotero 9.x and 10.0.x.
 
 ## License
 
