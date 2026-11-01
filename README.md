@@ -43,7 +43,7 @@ If an external attachment-renaming tool changes a stored filename without updati
 Requirements:
 
 - Node.js
-- `zip`
+- Python 3
 
 ```bash
 npm run check
@@ -51,6 +51,8 @@ npm run build
 ```
 
 The packaged extension is written to `dist/zotero-pdf-deduplicator.xpi`.
+
+The build uses fixed ZIP metadata so its SHA-256 is identical on local machines and GitHub Actions. To publish, run **Actions -> Publish XPI -> Run workflow** with the version tag. The manual workflow verifies that the tag contains the same plugin source, checks the package against `update.json`, and uploads the XPI to GitHub Releases.
 
 ## Safety and limitations
 

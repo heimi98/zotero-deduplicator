@@ -1,0 +1,81 @@
+name: Publish XPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Version tag with the same plugin source (for example, v1.2.1)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-xpi
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+      - name: Verify tag and plugin source
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, re, subprocess
+          tag = os.environ['RELEASE_TAG']
+          version = json.loads(pathlib.Path('package.json').read_text())['version']
+          assert re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+', tag), 'Invalid release tag'
+          assert tag == 'v' + version, 'Tag does not match package version'
+          subprocess.run(['git', 'rev-parse', '--verify', 'refs/tags/' + tag], check=True)
+          subprocess.run(['git', 'diff', '--exit-code', 'refs/tags/' + tag, 'HEAD', '--', 'addon'], check=True)
+          PY
+      - run: npm run check
+      - run: npm run build
+      - name: Verify package and automatic updates
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, zipfile
+          root = pathlib.Path('.')
+          manifest = json.loads((root / 'addon/manifest.json').read_text())
+          app = manifest['applications']['zotero']
+          update = json.loads((root / 'update.json').read_text())['addons'][app['id']]['updates'][0]
+          assert manifest['version'] == update['version'] == os.environ['RELEASE_TAG'][1:]
+          assert update['applications']['zotero'] == {key: app[key] for key in ('strict_min_version', 'strict_max_version')}
+          xpi = root / 'dist/zotero-pdf-deduplicator.xpi'
+          assert update['update_hash'] == 'sha256:' + hashlib.sha256(xpi.read_bytes()).hexdigest()
+          assert update['update_link'] == f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{os.environ['RELEASE_TAG']}/{xpi.name}"
+          with zipfile.ZipFile(xpi) as archive:
+              assert archive.testzip() is None
+              for name in archive.namelist():
+                  assert archive.read(name) == (root / 'addon' / name).read_bytes()
+          notes = (root / 'CHANGELOG.md').read_text().split('## ' + manifest['version'] + ' - ', 1)[1].split('\n', 1)[1].split('\n## ', 1)[0].strip()
+          (root / 'dist/release-notes.md').write_text(notes + '\n')
+          PY
+      - name: Publish the verified XPI
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" dist/zotero-pdf-deduplicator.xpi
+          else
+            gh release create "$RELEASE_TAG" dist/zotero-pdf-deduplicator.xpi \
+              --verify-tag --title "PDF Deduplicator ${RELEASE_TAG#v}" \
+              --notes-file dist/release-notes.md --latest
+          fi

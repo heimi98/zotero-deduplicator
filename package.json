@@ -4,7 +4,7 @@
   "private": true,
   "description": "Detect duplicate Zotero PDF attachments by SHA-256.",
   "scripts": {
-    "build": "rm -rf dist && mkdir -p dist && cd addon && zip -Xqr ../dist/zotero-pdf-deduplicator.xpi .",
+    "build": "python3 scripts/build.py",
     "check": "node --check addon/bootstrap.js && node --check addon/content/duplicate-dialog.js"
   },
   "license": "MIT"

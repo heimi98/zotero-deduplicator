@@ -5,7 +5,7 @@
         {
           "version": "1.2.1",
           "update_link": "https://github.com/heimi98/zotero-deduplicator/releases/download/v1.2.1/zotero-pdf-deduplicator.xpi",
-          "update_hash": "sha256:5e98a9fb58923a90c82f062889f37bec05ac0042ed962e5b2ef678e85f225d52",
+          "update_hash": "sha256:146f63dde8e43a93180aa5ba989b2e159d1ffbc130b248ea7099a6937711659f",
           "applications": {
             "zotero": {
               "strict_min_version": "9.0",
